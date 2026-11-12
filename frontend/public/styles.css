@@ -1,0 +1,129 @@
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --border: #d9dde3;
+  --text: #1d2330;
+  --muted: #5f6b7a;
+  --accent: #1f6feb;
+  --danger: #c62828;
+  --ok: #2e7d32;
+  --sent: #8a4b00;
+  --sent-bg: #fff1dc;
+  --recv: #0b5394;
+  --recv-bg: #e3efff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: var(--text);
+  color: #fff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 48px;
+}
+header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+header nav a { color: #c9d1d9; text-decoration: none; margin-right: 16px; }
+header nav a.active, header nav a:hover { color: #fff; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.card h2 { font-size: 15px; margin: 0 0 12px; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px 12px;
+  align-items: end;
+}
+label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+input, select {
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text);
+  min-width: 0;
+}
+.hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+
+button {
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+button.secondary { background: #fff; color: var(--accent); }
+button.danger { background: #fff; color: var(--danger); border-color: var(--danger); }
+button:disabled { opacity: .5; cursor: default; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.status { min-height: 20px; font-size: 13px; margin: 4px 0 12px; }
+.status.error { color: var(--danger); }
+.status.ok { color: var(--ok); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+td input { width: 100px; }
+td input.changed { border-color: var(--accent); background: #eef4ff; }
+.state { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; }
+.state.on { color: var(--ok); background: #e6f4e7; }
+.state.off { color: var(--muted); background: #eceff3; }
+.table-wrap { overflow-x: auto; }
+
+/* Kayıt accordion */
+.records { display: flex; flex-direction: column; gap: 6px; }
+.record { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+.record-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 16px 190px 90px 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--text);
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.record-header:hover { background: #f0f3f7; }
+.record-header .chev { transition: transform .15s; color: var(--muted); }
+.record-header[aria-expanded="true"] .chev { transform: rotate(90deg); }
+.mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; text-align: center; }
+.badge.RECEIVED { color: var(--recv); background: var(--recv-bg); }
+.badge.SENT { color: var(--sent); background: var(--sent-bg); }
+.record-panel { padding: 4px 12px 12px 40px; border-top: 1px solid var(--border); }
+.record-panel[hidden] { display: none; }
+.meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px 16px; margin: 8px 0; font-size: 13px; }
+.meta span { color: var(--muted); }
+.fields td:nth-child(2) { font-variant-numeric: tabular-nums; }
+.empty { color: var(--muted); padding: 12px 0; }
+.more { margin-top: 12px; text-align: center; }
+
+@media (max-width: 700px) {
+  .record-header { grid-template-columns: 16px 1fr 80px; }
+  .record-header .hide-sm { display: none; }
+}

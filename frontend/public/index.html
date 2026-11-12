@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar Kayıtları</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Radar K2</h1>
+  <nav>
+    <a href="index.html" class="active">Kayıtlar</a>
+    <a href="radars.html">Simülasyon</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Filtre</h2>
+    <form id="filter" class="form-grid">
+      <label>Radar ID<input name="radarId" placeholder="R-1, R-2"></label>
+      <label>Radar tipi<input name="radarType" placeholder="SEARCH"></label>
+      <label>Mesaj tipi<input name="messageType" placeholder="PLOT, COMMAND"></label>
+      <label>Mesaj kodu<input name="messageCode" placeholder="100"></label>
+      <label>Yön
+        <select name="direction">
+          <option value="">Tümü</option>
+          <option value="RECEIVED">RECEIVED</option>
+          <option value="SENT">SENT</option>
+        </select>
+      </label>
+      <label>Başlangıç<input type="datetime-local" step="1" name="actionTimeFrom"></label>
+      <label>Bitiş<input type="datetime-local" step="1" name="actionTimeTo"></label>
+      <label>Sayfa boyutu
+        <select name="size">
+          <option>20</option>
+          <option selected>50</option>
+          <option>100</option>
+          <option>200</option>
+        </select>
+      </label>
+      <div class="actions">
+        <button type="submit">Ara</button>
+        <button type="button" class="secondary" id="reset">Temizle</button>
+      </div>
+    </form>
+    <p class="hint">Birden fazla değer için virgülle ayırın (aynı alan içinde VEYA, alanlar arasında VE).</p>
+  </section>
+
+  <div id="status" class="status"></div>
+  <div id="records" class="records"></div>
+  <div class="more"><button id="more" class="secondary" hidden>Daha fazla yükle</button></div>
+</main>
+<script src="common.js"></script>
+<script src="records.js"></script>
+</body>
+</html>

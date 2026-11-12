@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar Simülasyonu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Radar K2</h1>
+  <nav>
+    <a href="index.html">Kayıtlar</a>
+    <a href="radars.html" class="active">Simülasyon</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Radar ekle</h2>
+    <form id="add" class="form-grid">
+      <label>Radar ID<input name="radarId" required pattern="[A-Za-z0-9_\-]{1,32}" placeholder="R-1"></label>
+      <label>Radar tipi
+        <input name="radarType" required maxlength="32" list="radar-types" placeholder="SEARCH">
+        <datalist id="radar-types">
+          <option value="SEARCH"></option>
+          <option value="TRACKING"></option>
+          <option value="SURVEILLANCE"></option>
+        </datalist>
+      </label>
+      <label>Dönme periyodu (ms)<input name="rotationPeriodMs" type="number" required min="100" max="60000" value="4000"></label>
+      <label>Min plot / tur<input name="minPlots" type="number" required min="0" max="500" value="5"></label>
+      <label>Max plot / tur<input name="maxPlots" type="number" required min="0" max="500" value="20"></label>
+      <div class="actions"><button type="submit">Ekle</button></div>
+    </form>
+  </section>
+
+  <div id="status" class="status"></div>
+
+  <section class="card">
+    <h2>Aktif radarlar <span id="load" class="hint"></span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Radar ID</th><th>Tip</th><th>Durum</th><th>Periyot (ms)</th><th>Min plot</th><th>Max plot</th><th>≈ plot/sn</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="radars"></tbody>
+      </table>
+    </div>
+    <p class="hint">Periyot veya plot değerlerini değiştirip <strong>Uygula</strong>'ya basın; çalışan radarda bir sonraki turda geçerli olur.
+      <strong>Durdur</strong> plot üretimini keser (ayarlar korunur), <strong>Başlat</strong> kaldığı turdan devam ettirir.
+      Her komut (ekle/uygula/durdur/başlat/sil) SENT kaydı olarak saklanır. Radarlar bellekte tutulur; uygulama yeniden başlarsa silinir.</p>
+  </section>
+</main>
+<script src="common.js"></script>
+<script src="radars.js"></script>
+</body>
+</html>

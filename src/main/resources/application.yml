@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: radar-records
+  mongodb:
+    uri: ${SPRING_MONGODB_URI:mongodb://localhost:27017/radar}
+  data:
+    mongodb:
+      auto-index-creation: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
