@@ -1,0 +1,15 @@
+# IDE debug modu: sadece mongo + frontend container'da, uygulama IntelliJ'den çalışır.
+#
+#   docker compose stop app
+#   docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d
+#
+# Uygulama .env'deki APP_PORT'ta dinler (application-local.yml); frontend oraya yönlenir.
+# Container moduna dönmek için: docker compose up -d
+services:
+  app:
+    # Profil verilmediği sürece bu override ile app container'ı başlatılmaz
+    profiles: ["container-app"]
+
+  frontend:
+    environment:
+      API_UPSTREAM: http://host.docker.internal:${APP_PORT:-8080}

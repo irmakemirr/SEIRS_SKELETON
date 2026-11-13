@@ -35,8 +35,9 @@ services:
   frontend:
     build: ./frontend
     restart: unless-stopped
-    depends_on:
-      - app
+    # app'e bağımlı değil: nginx upstream'i istek anında çözer (debug modunda app IDE'de çalışır)
+    environment:
+      API_UPSTREAM: http://app:8080
     ports:
       - "${FE_PORT:-3000}:80"
 
